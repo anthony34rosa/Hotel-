@@ -1,0 +1,397 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <string>
+using namespace std;
+
+/*
+
+ * Pseudocode or Algorithm for the program:
+  1. Start.
+  2. Make variables and constants.
+  3. Ask user for the number of floors in hotel, validate to make sure number entered is correct.
+  4. Ask user for the number of available rooms on every floor, validate to make sure number entered is correct
+  5. Ask the user for the number of each type of booked room on every floor, make sure number is note greater then the one entered, if so redo previous step.
+  6. Calculate number of available rooms, occupied rooms, occupancy rate, price, and room with least number of available rooms.
+  7. Display information accordingly.
+  8. If occupancy rate is below 60%, display message to improve occupancy.
+  9. Display programer
+  10. due date
+  11. Project number
+  12. End
+ 
+*/
+
+int main()
+{
+
+    // Heading of program
+
+    cout << "========================================================================================================================\n";
+    cout << "                                             BLUE MONT HOTEL                                             \n" ;
+    cout << "========================================================================================================================\n\n";
+
+    // variables and constants:
+
+    int incomeTotal = 0, floor, room, totalRooms = 0, occupiedRooms = 0, totalOccupied = 0, singleRoom, doubleRoom, kingRoom, suiteRoom,
+    first = 31, second = 31, third = 31, fourth = 31, fifth = 31, leastRoom, leastnum;
+    
+    
+    
+    const int single1 = 60, double1 = 75, king1 = 100, suite1 = 150, maxRoom = 30, maxFloor = 5, minRoom = 1, minFloor = 1;
+    string location;
+    // Outro constants:
+
+    const string
+    
+    name = "Anthony Rosario",
+   
+   
+    
+    const int
+    
+    projectNum = 3;
+
+    // What is the location of the hotel:
+
+    cout << "Enter the location of this hotel chain: ";
+    getline(cin, location);
+
+    do
+        
+        
+        // Make user enter number of floors in hotel, validate that number is between 1-5.
+    {
+        cout << "\nEnter total number of floors of hotel: ";
+        cin >> floor;
+        if (floor < minFloor || floor > maxFloor)
+            cout << "Number of floors must be between 1 and 5 !! please try again." << endl << endl;
+    } while (floor < minFloor || floor > maxFloor);
+
+    for (int number = 1; number <= floor; number++) // This will loop the same number of times as the hotel has floors.
+    {
+
+        do //This do while loop ask for the number of floors on each floor
+        {
+
+            // program is asking for the number of rooms on each floor
+
+            switch (number) // This switch statement is a ordinal switch. It's purpose is to display different outputs depending on the room number.
+            {
+            case(1):
+            {
+                cout << endl << "Enter the total number of rooms in the 1st floor: ";
+                break;
+            }
+            case(2):
+            {
+                cout << endl << "Enter the total number of rooms in the 2nd floor: ";
+                break;
+            }
+            case(3):
+            {
+                cout << endl << "Enter the total number of rooms in the 3rd floor: ";
+                break;
+            }
+            default:
+            {
+                cout << endl << "Enter the total number of rooms in the " << number << "th floor: ";
+            }
+            }
+            cin >> room;
+
+            while (room < minRoom || room > maxRoom) // While loop to check if number of rooms is appropriate.
+            {
+                cout << "Number of rooms must be between !! 1 and 30. " << endl;
+                switch (number)
+                {
+                case(1):
+                {
+                    cout << endl << "Enter the total number of rooms in the 1st floor: ";
+                    break;
+                }
+                case(2):
+                {
+                    cout << endl << "Enter the total number of rooms in the 2nd floor: ";
+                    break;
+                }
+                case(3):
+                {
+                    cout << endl << "Enter the total number of rooms in the 3rd floor: ";
+                    break;
+                }
+                default:
+                {
+                    cout << endl << "Enter the total number of rooms in the " << number << "th floor: ";
+                }
+                }
+                cin >> room;
+            }
+            
+            
+            totalRooms += room;
+            
+            occupiedRooms = 0; // set to zero bc it runs through a loop
+            
+            
+            cout << "\t Enter number of SINGLE rooms occupied in the "; // used a switch stament to ask user for the number of single rooms
+            switch (number) // Ordinal Switch.
+            {
+            case(1):
+            {
+                cout << "1st floor: ";
+                break;
+            }
+            case(2):
+            {
+                cout << "2nd floor: ";
+                break;
+            }
+            case(3):
+            {
+                cout << "3rd floor: ";
+                break;
+            }
+            default:
+            {
+                cout << number << "th floor: ";
+            }
+            }
+            cin >> singleRoom;
+            occupiedRooms += singleRoom; // program is adding number of single rooms to occupiedrooms.
+            incomeTotal += singleRoom * single1; // program is multiplying number of single rooms times the price of each and adding it to revnue.
+
+            cout << "\t Enter number of DOUBLE rooms occupied in the "; // program ask the user the number of double rooms.
+            switch (number)
+            {
+            case(1):
+            {
+                cout << "1st floor: ";
+                break;
+            }
+            case(2):
+            {
+                cout << "2nd floor: ";
+                break;
+            }
+            case(3):
+            {
+                cout << "3rd floor: ";
+                break;
+            }
+            default:
+            {
+                cout << number << "th floor: ";
+            }
+            }
+            cin >> doubleRoom;
+            occupiedRooms += doubleRoom; // Program is going to add number of double rooms to occupied rooms.
+            incomeTotal += doubleRoom * double1; // program is going to multiply number of double rooms times the price of each and add to income.
+
+            cout << "\t Enter number of KING rooms occupied in the "; // Program will ask user for number of king rooms on floor.
+            switch (number)
+            {
+            case(1):
+            {
+                cout << "1st floor: ";
+                break;
+            }
+            case(2):
+            {
+                cout << "2nd floor: ";
+                break;
+            }
+            case(3):
+            {
+                cout << "3rd floor: ";
+                break;
+            }
+            default:
+            {
+                cout << number << "th floor: ";
+            }
+            }
+            cin >> kingRoom;
+            occupiedRooms += kingRoom; // Program is going to add number of king rooms to occupied.
+            incomeTotal += kingRoom * king1; // program is going to multiply number of king rooms times the price of each and add to income.
+
+            cout << "\t Enter number of SUITE rooms occupied in the "; // Ask the user for the number of suite rooms on floor.
+            switch (number)
+            {
+            case(1):
+            {
+                cout << "1st floor: ";
+                break;
+            }
+            case(2):
+            {
+                cout << "2nd floor: ";
+                break;
+            }
+            case(3):
+            {
+                cout << "3rd floor: ";
+                break;
+            }
+            default:
+            {
+                cout << number << "th floor: ";
+            }
+            }
+            cin >> suiteRoom;
+            
+            
+            occupiedRooms += suiteRoom; // this is adding suiteRoom and occupied rooms and storing it under occupiedRoom
+            incomeTotal += suiteRoom * suite1; // this is storing the resultof suite1 and suiteroom to income total
+           totalOccupied += occupiedRooms; // this is storing the value in occupied roooms to totaloccupied
+
+            if (occupiedRooms > room)
+            {
+                cout << "Occupied rooms can't exceed available rooms. \n\n";
+                totalOccupied -= occupiedRooms;
+                
+                incomeTotal -= singleRoom * single1;
+                
+                incomeTotal -= doubleRoom * double1;
+                
+                incomeTotal -= kingRoom * king1;
+                
+                incomeTotal -= suiteRoom * suite1;
+                
+                totalRooms-= room;
+            }
+        } while (occupiedRooms > room);
+
+        switch (number) // Switch statement to save the number of available rooms to a variable for each floor.
+        {
+                
+                
+        case(1):
+        {
+            first = room;
+            break;
+        }
+        case(2):
+        {
+            second = room;
+            break;
+        }
+        case(3):
+        {
+            third = room;
+            break;
+        }
+        case(4):
+        {
+            fourth = room;
+            break;
+        }
+        case(5):
+        {
+            fifth = room;
+            break;
+        }
+                
+        }
+        
+    }
+
+    for (int a  = 1; a <= floor; a++) // compare available rooms of each floor and find out which one is the minimum.
+    {
+        int now = 0;
+        switch (a)
+        {
+        case(1):
+        {
+            now = first;
+            break;
+        }
+        case(2):
+        {
+            now = second;
+            break;
+        }
+        case(3):
+        {
+            now = third;
+            break;
+        }
+        case(4):
+        {
+            now = fourth;
+            break;
+        }
+        case(5):
+        {
+            now = fifth;
+            break;
+        }
+        }
+
+        // Program cant allow user to enter more then 30 rooms per floor and two floors cant have the same number
+        if (now <= first && now <= second && now <= third && now <= fourth && now <= fifth)
+        {
+            leastnum = a;
+            leastRoom = now;
+        }
+        
+    }
+
+    // Display hotel data to user
+
+    cout << endl << "========================================================================================================================" << endl;
+    cout << "                                             BlueMont Hotel Located At " << location << endl;
+    cout << "========================================================================================================================\n";
+    cout << "Room Prices: | Single: " << "$" << single1 << " Double: " << "$" << double1 <<  " King: " << "$" << king1 << " Suite: " << "$" << suite1 << "\n\n";
+
+    cout << "Hotel Income: " << "$" << incomeTotal << endl;
+    
+    
+    cout << "Total available rooms: " << totalRooms << endl;
+    
+    
+    cout << "Total occupied rooms: " << totalOccupied << endl;
+    
+    
+    cout << "Total unoccupied rooms: " << totalRooms - totalOccupied << endl;
+    
+    
+    cout << "Occupancy rate: " << (static_cast<double>(totalOccupied) / totalRooms) * 100 << "%" << endl;
+    
+    
+    if ((static_cast<double>(totalOccupied) / totalRooms) * 100 < 60.00)
+        
+        
+        cout << "Occupancy rate less than 60%. Improve occupancy rate." << endl;
+    switch (leastnum)     {
+    case(1):
+    {
+        cout << "1st floor, with " << leastRoom << " rooms, has the least number of available rooms.";
+        break;
+    }
+    case(2):
+    {
+        cout << "2nd floor, with " << leastRoom << " rooms, has the least number of available rooms.";
+        break;
+    }
+    case(3):
+    {
+        cout << "3rd floor, with " << leastRoom << " rooms, has the least number of available rooms.";
+        break;
+    }
+    default:
+    {
+        cout << leastnum <<"th floor, with " << leastRoom << " rooms, has the least number of available rooms.";
+    }
+    }
+
+    // Final staments thanking user and showning class info:
+
+    cout << endl << endl << "Thank you for testing my program." << endl;
+    
+    cout << "Programmer: " << name << endl;
+    
+    
+    return 0;
+}
+
